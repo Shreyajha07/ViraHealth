@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Connect Memory – ViraHealth</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🧠 Connect the Memory</h1>
+  <p class="subtitle">Match the person's <strong>Name</strong>, <strong>Photo</strong>, and <strong>Relationship</strong></p>
+
+  <div class="game-container">
+    <div class="column" id="names">
+      <div class="card" data-id="john" data-type="name">👤 John</div>
+      <div class="card" data-id="emma" data-type="name">👩 Emma</div>
+      <div class="card" data-id="mike" data-type="name">🧔 Mike</div>
+    </div>
+
+    <div class="column" id="photos">
+      <div class="card" data-id="emma" data-type="photo"><img src="emma.jpg" alt="Emma" /></div>
+      <div class="card" data-id="john" data-type="photo"><img src="john.jpg" alt="John" /></div>
+      <div class="card" data-id="mike" data-type="photo"><img src="mike.jpg" alt="Mike" /></div>
+    </div>
+
+    <div class="column" id="relationships">
+      <div class="card" data-id="mike" data-type="relation">👨‍👦 Brother</div>
+      <div class="card" data-id="john" data-type="relation">👨‍👦 Son</div>
+      <div class="card" data-id="emma" data-type="relation">💍 Wife</div>
+    </div>
+  </div>
+
+  <div id="result" class="result"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

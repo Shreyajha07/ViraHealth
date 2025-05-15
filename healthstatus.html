@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Status Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f6f9fc;
+      color: #003366;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #0050c9;
+      font-size: 2.5em;
+      margin-bottom: 5px;
+    }
+
+    .subheading {
+      font-size: 1em;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #0050c9;
+    }
+
+    .card input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .target {
+      font-size: 0.85em;
+      color: #666;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      font-size: 1em;
+      background-color: #0050c9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #003b9b;
+    }
+
+    .suggestion-box {
+      margin-top: 30px;
+      padding: 20px;
+      background: #e3f2fd;
+      border-left: 6px solid #0050c9;
+      border-radius: 6px;
+      text-align: left;
+      display: none;
+    }
+
+    ul {
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Health Status Tracker</h1>
+    <p class="subheading">Your health at a glance – Stay informed and manage your well-being!</p>
+
+    <div class="form-grid">
+      <div class="card">
+        <h3>Blood Pressure</h3>
+        <input type="text" id="systolic" placeholder="Systolic (e.g., 120)">
+        <input type="text" id="diastolic" placeholder="Diastolic (e.g., 80)">
+        <p class="target">Target: Below 130/85 mmHg</p>
+      </div>
+
+      <div class="card">
+        <h3>Blood Sugar Level</h3>
+        <input type="text" id="sugar" placeholder="Blood Sugar (mg/dL)">
+        <p class="target">Target: Below 140 mg/dL</p>
+      </div>
+
+      <div class="card">
+        <h3>Body Mass Index (BMI)</h3>
+        <input type="text" id="bmi" placeholder="BMI (e.g., 22.5)">
+        <p class="target">Target: 18.5 – 24.9</p>
+      </div>
+
+      <div class="card">
+        <h3>Other Health Status</h3>
+        <input type="text" id="heartRate" placeholder="Heart Rate (bpm)">
+        <input type="text" id="cholesterol" placeholder="Cholesterol (mg/dL)">
+        <p class="target">Heart: 60–100 bpm | Cholesterol: < 200 mg/dL</p>
+      </div>
+    </div>
+
+    <button onclick="generateSuggestions()">Generate Health Suggestions</button>
+
+    <div id="suggestions" class="suggestion-box"></div>
+  </div>
+
+  <script>
+    function generateSuggestions() {
+      const systolic = parseInt(document.getElementById('systolic').value);
+      const diastolic = parseInt(document.getElementById('diastolic').value);
+      const sugar = parseInt(document.getElementById('sugar').value);
+      const bmi = parseFloat(document.getElementById('bmi').value);
+      const heartRate = parseInt(document.getElementById('heartRate').value);
+      const cholesterol = parseInt(document.getElementById('cholesterol').value);
+
+      let output = "<h3>Your Health Suggestions</h3><ul>";
+
+      if (!isNaN(systolic) && !isNaN(diastolic)) {
+        if (systolic > 130 || diastolic > 85) {
+          output += "<li>🩺 Blood Pressure is high. Try reducing sodium and manage stress.</li>";
+        } else {
+          output += "<li>✅ Blood Pressure is within a healthy range.</li>";
+        }
+      }
+
+      if (!isNaN(sugar)) {
+        if (sugar > 140) {
+          output += "<li>🍭 Blood Sugar is high. Consider limiting refined sugars.</li>";
+        } else {
+          output += "<li>✅ Blood Sugar is healthy.</li>";
+        }
+      }
+
+      if (!isNaN(bmi)) {
+        if (bmi < 18.5) {
+          output += "<li>📉 BMI indicates underweight. Consider a nutrition-rich diet.</li>";
+        } else if (bmi > 24.9) {
+          output += "<li>⚖️ BMI indicates overweight. Regular exercise and portion control may help.</li>";
+        } else {
+          output += "<li>✅ BMI is in the ideal range.</li>";
+        }
+      }
+
+      if (!isNaN(heartRate)) {
+        if (heartRate < 60 || heartRate > 100) {
+          output += "<li>❤️ Heart rate is outside the normal range. Consult a cardiologist if needed.</li>";
+        } else {
+          output += "<li>✅ Heart rate is normal.</li>";
+        }
+      }
+
+      if (!isNaN(cholesterol)) {
+        if (cholesterol > 200) {
+          output += "<li>🧈 Cholesterol is high. Reduce fatty and fried food intake.</li>";
+        } else {
+          output += "<li>✅ Cholesterol level is healthy.</li>";
+        }
+      }
+
+      output += "</ul>";
+      const suggestionsDiv = document.getElementById("suggestions");
+      suggestionsDiv.innerHTML = output;
+      suggestionsDiv.style.display = "block";
+    }
+  </script>
+</body>
+</html>

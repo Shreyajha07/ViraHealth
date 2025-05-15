@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Medication Reminder - Virtual Health Assistant</title>
+    <style>
+        /* Basic CSS for the page layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #0044cc;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* Medication reminder form styled to match the health status card size */
+        .form-container {
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+            width: 400px; /* Adjusted width to match health status card */
+            border-radius: 12px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .form-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #confirmationMessage {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* Media Query for small screens */
+        @media (max-width: 768px) {
+            .form-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Medication Reminder</h1>
+        <p>Set and manage your medication reminders effortlessly</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h2>Set Medication Reminder</h2>
+
+        <!-- Medication Reminder Form -->
+        <div class="form-container">
+            <form id="reminderForm">
+                <label for="medication">Medication Name:</label>
+                <input type="text" id="medication" required>
+
+                <label for="dosage">Dosage (mg):</label>
+                <input type="number" id="dosage" required>
+
+                <label for="time">Reminder Time:</label>
+                <input type="time" id="time" required>
+
+                <label for="frequency">Frequency:</label>
+                <select id="frequency" required>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+
+                <button type="submit">Set Reminder</button>
+            </form>
+            <div id="confirmationMessage" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Medication Reminder -->
+    <script>
+        document.getElementById('reminderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const medication = document.getElementById('medication').value;
+            const dosage = document.getElementById('dosage').value;
+            const time = document.getElementById('time').value;
+            const frequency = document.getElementById('frequency').value;
+
+            const reminderData = { medication, dosage, time, frequency };
+            localStorage.setItem('reminder', JSON.stringify(reminderData));
+
+            // Display confirmation message
+            document.getElementById('confirmationMessage').style.display = 'block';
+            document.getElementById('confirmationMessage').innerText = 
+                `Reminder set for ${medication} (${dosage}mg) at ${time} every ${frequency}.`;
+
+            // Optionally, call backend to store data (not shown here)
+            console.log('Reminder data:', reminderData);
+
+            // Set the reminder in the backend (simulated)
+            setReminder(reminderData);
+        });
+
+        function setReminder(reminderData) {
+            const { medication, dosage, time, frequency } = reminderData;
+
+            // Convert time to 24-hour format and calculate time until reminder
+            const [hours, minutes] = time.split(":").map(Number);
+            const reminderTime = new Date();
+            reminderTime.setHours(hours, minutes, 0);
+
+            const now = new Date();
+            let delay = reminderTime - now;
+
+            if (delay < 0) {
+                // If the time has already passed for today, set it for the next day
+                delay += 24 * 60 * 60 * 1000;
+            }
+
+            console.log(`Reminder set for: ${reminderTime}`);
+            setTimeout(() => {
+                alert(`Time to take your medication: ${medication} (${dosage}mg)`);
+            }, delay);
+
+            if (frequency === 'weekly') {
+                setInterval(() => {
+                    alert(`Time to take your medication: ${medication} (${dosage}mg)`);
+                }, 7 * 24 * 60 * 60 * 1000); // Every week
+            }
+        }
+    </script>
+</body>
+</html>

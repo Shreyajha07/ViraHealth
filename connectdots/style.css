@@ -1,0 +1,91 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(145deg, #2c3e50, #4DA0B0);
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .game-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 20px;
+    width: 160px;
+    min-height: 160px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255,255,255,0.2);
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 12px #00ffe7;
+  }
+  
+  .card.selected {
+    border: 2px solid #00ffe7;
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px #00ffe7;
+  }
+  
+  .result {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-height: 40px;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .result.success {
+    color: #00ffbf;
+    text-shadow: 0 0 8px #00ffe7;
+  }
+  
+  .result.fail {
+    color: #ff9494;
+    text-shadow: 0 0 8px #ff4d4d;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  

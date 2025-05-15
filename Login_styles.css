@@ -1,0 +1,100 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, rgba(60, 74, 138, 0.8), rgba(43, 142, 168, 0.8));
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+    display:grid;
+  justify-content: center; 
+  align-items: center;
+align-items: center; 
+}
+
+.hero {
+    display: flex;
+    text-align: center;
+    min-height: 50vh; /* Adjust height as needed */
+}
+
+/* Box-like styling for hero text */
+.hero-content {
+    background: rgba(255, 255, 255, 0.1); /* Light semi-transparent box */
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 700px; /* Restricts width to keep text together */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+/* Hero Text Styling */
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+
+.section {
+    /* display: flex;
+    flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    height: 50vh; /* Ensures it is in the middle */
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px; /* Adds spacing between text and buttons */
+}
+
+.button-group a {
+    text-decoration: none;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #005eff;
+    color: white;
+    transition: 0.3s;
+    background: linear-gradient(135deg, rgba(60, 74, 138, 0.8), rgba(43, 142, 168, 0.8));  
+}
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+   
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.select{
+    background: rgba(255, 255, 255, 0.1); /* Light semi-transparent box */
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 700px; /* Restricts width to keep text together */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}

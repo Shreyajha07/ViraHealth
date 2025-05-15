@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face Memory Game</title>
+  <link rel="stylesheet" href="Game1_style.css" />
+</head>
+<body>
+  <h1>Memory Game for Alzheimer's Patients</h1>
+  <p class="instructions">Click on the cards to match the faces!</p>
+  <div class="game-board" id="game-board"></div>
+  <script src="Game1_script.js"></script>
+  <div id="congrats-message" style="display: none; font-size: 2rem; color: green; margin-top: 20px;">
+    🎉 Yayy! Congratulations, you matched all the cards! 🎉
+    <br><br>
+    <button onclick="setupGame(); document.getElementById('congrats-message').style.display = 'none';">
+      🔁 Play Again
+    </button>
+  </div>
+  
+</body>
+</html>

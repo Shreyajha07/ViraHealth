@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #fdfdfd;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .header {
+    background: linear-gradient(90deg, #3c4a8a, #2b8ea8);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header .logo {
+    justify-content: center; 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    display: flex; 
+    align-items: center; 
+    gap: 16px; 
+    flex-wrap: nowrap;
+  }
+  
+  .header .mainlogo {
+    top: 20px;
+    left: 0;
+    max-height: 70px;
+  }
+  
+  #assistant-box {
+    padding: 20px 30px;
+    background: #f1f1f1;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  
+  .nav a {
+    color: white; /* Ensure proper visibility */
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .nav a:hover {
+    background: #ff7f50;
+    border-radius: 5px;
+  }
+  
+  #mic-btn {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #user-query, #assistant-response {
+    font-size: 18px;
+    margin-top: 15px;
+  }
